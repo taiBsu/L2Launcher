@@ -1,31 +1,8 @@
 /*
  * Lineage II Launcher for DynDNS servers
  * 
- * © 2019 Tibor Csötönyi
- * 
- * 
- * 
- * Usage: 
- * 
- * - Place the file into your L2 root directory.
- * - For Lineage II versions >= High Five: rename system/L2.bin -> system/L2.exe
- * - Create a link to the L2Launcher on your desktop. 
- * - Append your host name behind the link path (L2Launcher.exe [hostname]).
- * 
- *  -> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
- *  
- *  
- * 
- * This is a VERY simple and unsafe way to start Lineage II using Windows host name resolving.
- * It's a quick and dirty way, please feel free to fix stuff I might have forgotten or coded badly.
- * 
- * The executable modifies the C:\Windows\system32\drivers\etc\hosts file to append (or modify if already exists) the IP
- * for the Lineage II authentification server so you're able to access private Lineage II servers that don't have static IPs.
- * 
- * Again, please keep in mind that this is a 2-hour dirt work of a guy who never worked with Windows Sockets before. Thanks.
- * 
- * ---------
- *  
+ * Â© 2019 Tibor CsÃ¶tÃ¶nyi
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -35,6 +12,25 @@
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
  * IN THE SOFTWARE.
+ * 
+ * ---------
+ *
+ * Usage: 
+ * 
+ * - Place the file into your L2 root directory.
+ * - For Lineage II versions >= High Five: rename system/L2.bin -> system/L2.exe
+ * - Create a link to the L2Launcher on your desktop. 
+ * - Append your host name behind the link path (L2Launcher.exe [hostname]).
+ * 
+ *  -> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
+ *  
+ * This is a VERY simple and unsafe way to start Lineage II using Windows host name resolving.
+ * It's a quick and dirty way, please feel free to fix stuff I might have forgotten or coded badly.
+ * 
+ * The executable modifies the C:\Windows\system32\drivers\etc\hosts file to append (or modify if already exists) the IP
+ * for the Lineage II authentification server so you're able to access private Lineage II servers that don't have static IPs.
+ * 
+ * Again, please keep in mind that this is a 2-hour dirt work of a guy who never worked with Windows Sockets before. Thanks.
  *  
  */
 
