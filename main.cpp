@@ -21,9 +21,12 @@
  * - For Lineage II versions >= High Five: rename system/L2.bin -> system/L2.exe
  * - Create a link to the L2Launcher on your desktop. 
  * - Append your host name behind the link path (L2Launcher.exe [hostname]).
- * 
  *  -> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
  *  
+ * - Run as administrator!
+ *  
+ *  
+ * 
  * This is a VERY simple and unsafe way to start Lineage II using Windows host name resolving.
  * It's a quick and dirty way, please feel free to fix stuff I might have forgotten or coded badly.
  * 
@@ -95,6 +98,8 @@ void copy_hosts(std::string const& hosts_path)
 		// close files
 		hosts_of.close();
 		hosts_tmp_if.close();
+
+		remove("hosts_tmp");
 	}
 	else {
 		throw std::runtime_error("I either couldn't read the hosts file or couldn't write the temporary file in this folder. Please restart this program as administrator. Exiting.\n");

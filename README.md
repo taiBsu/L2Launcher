@@ -18,4 +18,6 @@ Again, please keep in mind that this is a 2-hour dirt work of a guy who never wo
 - Append your host name behind the link path (L2Launcher.exe [hostname]).
 	-> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
 
-**Created in Visual Studio 2019**
+- Run as administrator!
+
+**Created in Visual Studio 2019 Community Edition**
