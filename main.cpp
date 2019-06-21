@@ -8,7 +8,7 @@
  * Usage: 
  * 
  * - Place the file into your L2 root directory.
- * - For Lineage II versions >= High Five: rename L2.bin -> L2.exe
+ * - For Lineage II versions >= High Five: rename system/L2.bin -> system/L2.exe
  * - Create a link to the L2Launcher on your desktop. 
  * - Append your host name behind the link path (L2Launcher.exe [hostname]).
  * 
@@ -43,6 +43,8 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+
+#pragma comment(lib, "ws2_32")
 
 void clone_hosts(std::string const& hosts_path, std::string const& l2_authserv, std::string& host_ip)
 {
@@ -131,7 +133,11 @@ int main(int argc, char** argv)
 	}
 
 	// get hosts file path
-	std::string hosts_path = std::getenv("WINDIR");
+	char* buf = nullptr;
+	size_t sz = 0;
+	
+	std::string hosts_path = _dupenv_s(&buf, &sz, "WINDIR") == 0 && buf ? std::string(buf) : std::string();
+
 	hosts_path.append(R"(\system32\drivers\etc\hosts)");
 
 	// what are we looking for inside our hosts file?

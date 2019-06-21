@@ -13,7 +13,7 @@ Again, please keep in mind that this is a 2-hour dirt work of a guy who never wo
 # Usage
 
 - Place the file into your L2 root directory.
-- For Lineage II versions >= High Five: rename L2.bin -> L2.exe
+- For Lineage II versions >= High Five: rename system/L2.bin -> system/L2.exe
 - Create a link to the L2Launcher on your desktop. 
 - Append your host name behind the link path (L2Launcher.exe [hostname]).
 	-> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
