@@ -21,3 +21,6 @@ Again, please keep in mind that this is a 2-hour dirt work of a guy who never wo
 - Run as administrator!
 
 **Created in Visual Studio 2019 Community Edition**
+
+# Download
+[Download L2Launcher here](https://taibsu.de/L2Launcher.zip)
