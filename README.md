@@ -9,3 +9,13 @@ It's a quick and dirty way, please feel free to fix stuff I might have forgotten
 The executable modifies the C:\Windows\system32\drivers\etc\hosts file to append (or modify if already exists) the IP
 for the Lineage II authentification server so you're able to access private Lineage II servers that don't have static IPs.
 Again, please keep in mind that this is a 2-hour dirt work of a guy who never worked with Windows Sockets before. Thanks.
+
+# Usage
+
+- Place the file into your L2 root directory.
+- For Lineage II versions >= High Five: rename L2.bin -> L2.exe
+- Create a link to the L2Launcher on your desktop. 
+- Append your host name behind the link path (L2Launcher.exe [hostname]).
+	-> Example: C:\Path\To\LineageII\L2Launcher.exe example.com
+
+**Created in Visual Studio 2019**
