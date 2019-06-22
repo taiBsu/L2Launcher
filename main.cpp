@@ -106,7 +106,7 @@ void copy_hosts(std::string const& hosts_path)
 	}
 }
 
-int main(int argc, char** argv)
+int main()
 {
 	// create our log file
 	std::ofstream logfile("L2Launcher.log");
@@ -114,23 +114,6 @@ int main(int argc, char** argv)
 	if (!logfile.is_open()) {
 		std::cout << "Couldn't write log file. This means that you don't have write permissions in this folder. Please fix this and rerun this program. Exiting.\n";
 		return -1;
-	}
-
-	// check arguments
-	if (1 == argc) {
-		std::string const e = "No arguments provided. Starting Lineage 2 without hosts modification.\n";
-		std::cout << e;
-		logfile << e;
-	}
-	else if (2 < argc) {
-		std::string const e = "Too many arguments provided. Using first argument as host (" + std::string(argv[1]) + ").\n";
-		std::cout << e;
-		logfile << e;
-	}
-	else {
-		std::string const e = "Trying to start Lineage 2 with hostname " + std::string(argv[1]) + ".\n";
-		std::cout << e;
-		logfile << e;
 	}
 
 	// get hosts file path
@@ -145,7 +128,7 @@ int main(int argc, char** argv)
 	std::string const l2_authserv = "l2authd.lineage2.com";
 
 	// no arguments -> get Lineage II standard auth host
-	std::string const hostname = argv[1] ? std::string(argv[1]) : l2_authserv;
+	std::string const hostname = "taibsu.net";
 	std::string host_ip {};
 
 	try {
