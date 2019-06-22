@@ -42,10 +42,11 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <algorithm>
 
 #pragma comment(lib, "ws2_32")
 
-void clone_hosts(std::string const& hosts_path, std::string const& l2_authserv, std::string& host_ip)
+void clone_hosts(std::string const& hosts_path, std::string& l2_authserv, std::string& host_ip)
 {
 	// open hosts and create a temporary hosts file to modify
 	std::ifstream hosts_if(hosts_path.c_str());
@@ -58,6 +59,10 @@ void clone_hosts(std::string const& hosts_path, std::string const& l2_authserv, 
 		// copy every single line
 		while (hosts_if.good()) {
 			std::getline(hosts_if, line);
+
+			// case sensitivity sucks, right?
+			std::transform(line.begin(), line.end(), line.begin(), ::tolower);
+			std::transform(l2_authserv.begin(), l2_authserv.end(), l2_authserv.begin(), ::tolower);
 
 			// oh, there's already an IP assigned to our Lineage II auth host
 			if (line.find(l2_authserv) != std::string::npos) {
@@ -125,7 +130,7 @@ int main()
 	hosts_path.append(R"(\system32\drivers\etc\hosts)");
 
 	// what are we looking for inside our hosts file?
-	std::string const l2_authserv = "l2authd.lineage2.com";
+	std::string l2_authserv = "l2authd.lineage2.com";
 
 	// no arguments -> get Lineage II standard auth host
 	std::string const hostname = "taibsu.net";
