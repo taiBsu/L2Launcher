@@ -213,8 +213,10 @@ int main(int argc, char** argv)
 		// start the game!
 		ShellExecute(nullptr, "open", "cmd.exe", "/C start system/L2.exe", nullptr, SW_HIDE);
 	}
-	catch(std::runtime_error const& e) {
+	catch (std::exception const& e) {
+		logfile << e.what();
 		std::cout << e.what();
+
 		return -1;
 	}
 
