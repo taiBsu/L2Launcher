@@ -46,6 +46,8 @@
 
 #pragma comment(lib, "ws2_32")
 
+#define LOG(m) std::cout << m; logfile << m
+
 void clone_hosts(std::string const& hosts_path, std::string& l2_authserv, std::string& host_ip)
 {
 	// open hosts and create a temporary hosts file to modify
@@ -68,17 +70,21 @@ void clone_hosts(std::string const& hosts_path, std::string& l2_authserv, std::s
 			if (line.find(l2_authserv) != std::string::npos) {
 				l2_auth_found = true;
 
-				hosts_tmp << host_ip.append("\t").append(l2_authserv);
-			}
+				hosts_tmp << host_ip.append("\t").append(l2_authserv).append("\n");
+			}	
 			// just another random line
 			else {
-				hosts_tmp << line + "\n";
+				hosts_tmp << line;
+
+				if (!line.empty()) {
+					hosts_tmp << "\n";
+				}
 			}
 		}
 
 		// no IP assigned to l2authd.lineage2.com ? let's do this!
 		if (!l2_auth_found) {
-			hosts_tmp << host_ip.append("\t").append(l2_authserv);
+			hosts_tmp << host_ip.append("\t").append(l2_authserv).append("\n");
 		}
 
 		// close files
@@ -124,18 +130,15 @@ int main(int argc, char** argv)
 	// check arguments
 	if (1 == argc) {
 		std::string const e = "No arguments provided. Starting Lineage 2 without hosts modification.\n";
-		std::cout << e;
-		logfile << e;
+		LOG(e);
 	}
 	else if (2 < argc) {
 		std::string const e = "Too many arguments provided. Using first argument as host (" + std::string(argv[1]) + ").\n";
-		std::cout << e;
-		logfile << e;
+		LOG(e);
 	}
 	else {
 		std::string const e = "Trying to start Lineage 2 with hostname " + std::string(argv[1]) + ".\n";
-		std::cout << e;
-		logfile << e;
+		LOG(e);
 	}
 
 	// get hosts file path
@@ -169,13 +172,11 @@ int main(int argc, char** argv)
 				host_ip = std::string(inet_ntoa(*ip_addr));
 
 				std::string const s = "Found hostname " + hostname + " at IP " + host_ip + ".\n";
-				std::cout << s;
-				logfile << s;
+				LOG(s);
 			}
 			else {
 				std::string const e = "Couldn't convert IP adress to ASCII string. Exiting.\n";
-				std::cout << e;
-				logfile << e;
+				LOG(e);
 
 				// something went wrong. let's make sure to clean up everything before we leave.
 				WSACleanup();
@@ -190,8 +191,7 @@ int main(int argc, char** argv)
 
 		if (host_ip.length() > 0) {	
 			std::string const s = "Trying to modify hosts file...\n";
-			std::cout << s;
-			logfile << s;
+			LOG(s);
 
 			// first, grab all the content out of our hosts file and add our host IP
 			clone_hosts(hosts_path, l2_authserv, host_ip);
@@ -202,9 +202,8 @@ int main(int argc, char** argv)
 			throw std::runtime_error("Host IP length is zero. Please check your DNS. Exiting.\n");
 		}
 
-		std::string const s = "Success. Starting Lineage II.";
-		std::cout << s;
-		logfile << s;
+		std::string const s = "Success. Starting Lineage II.\n";
+		LOG(s);
 
 		// do some cleanup stuff
 		WSACleanup();
@@ -214,8 +213,7 @@ int main(int argc, char** argv)
 		ShellExecute(nullptr, "open", "cmd.exe", "/C start system/L2.exe", nullptr, SW_HIDE);
 	}
 	catch (std::exception const& e) {
-		logfile << e.what();
-		std::cout << e.what();
+		LOG(e.what());
 
 		return -1;
 	}
